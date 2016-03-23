@@ -6,8 +6,8 @@
 </description>
     <link>jmbeach.github.io/CS403-001/</link>
     <atom:link href="jmbeach.github.io/CS403-001/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Mar 2016 19:14:19 -0500</pubDate>
-    <lastBuildDate>Tue, 22 Mar 2016 19:14:19 -0500</lastBuildDate>
+    <pubDate>Tue, 22 Mar 2016 19:37:28 -0500</pubDate>
+    <lastBuildDate>Tue, 22 Mar 2016 19:37:28 -0500</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
@@ -43,9 +43,9 @@ function stopVideo() {
 function AudioTag(tag) {
 	var self = this;
 	self.element = tag;
-	self.tag = tag.html();
+	self.tag = tag.html().trim();
 	self.toSeconds = function() {
-		var justNumbers = self.tag.substring(5);
+		var justNumbers = self.tag.substring(self.tag.indexOf(&quot;Audio&quot;)+5);
 		var toReturn = 0;
 		var timeParts = justNumbers.split(&quot;:&quot;);
 		toReturn += parseInt(timeParts[0])*3600;
@@ -59,7 +59,7 @@ var audioTags;
 var tags;
 var currentTag = 0;
 $(function() {
-	 audioTags = $(&quot;p&quot;).filter(function(i,p) {
+	audioTags = $(&quot;p, span&quot;).filter(function(i,p) {
 	  return $(p).html().indexOf(&quot;Audio&quot;) &gt; -1;
 	});
 	tags = [];
@@ -71,10 +71,19 @@ $(function() {
 		if(player.getCurrentTime() &gt; tags[currentTag+1].toSeconds()) {
 			currentTag++;
 			$(&quot;html, body&quot;).animate({
-				scrollTop: tags[currentTag].element.offset().top
+				scrollTop: tags[currentTag].element.offset().top - 100
 			},500);
+			tags[currentTag].element.effect(&quot;highlight&quot;,{color:&quot;#669966&quot;}, 3000);
 		}
-	},1000);
+		else if (currentTag &gt; 0 &amp;&amp;
+			player.getCurrentTime() &lt; tags[currentTag-1].toSeconds()) {
+			currentTag--;
+			$(&quot;html, body&quot;).animate({
+				scrollTop: tags[currentTag].element.offset().top - 100
+			},500);
+			tags[currentTag].element.effect(&quot;highlight&quot;,{color:&quot;#669966&quot;}, 3000);
+		}
+	},500);
 });
 &lt;/script&gt;
 

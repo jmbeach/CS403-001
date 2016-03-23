@@ -10,9 +10,11 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/CS403-001/css/main.css">
+  <link rel="stylesheet" href="/CS403-001/bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
   <link rel="canonical" href="jmbeach.github.io/CS403-001/2016/03/22/week-10-day-1-evaluation.html">
   <link rel="alternate" type="application/rss+xml" title="CS 403 - 001 Spring 2016" href="jmbeach.github.io/CS403-001/feed.xml">
   <script src="/CS403-001/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/CS403-001/bower_components/jquery-ui/jquery-ui.min.js"></script>
 </head>
 
 
@@ -94,9 +96,9 @@ function stopVideo() {
 function AudioTag(tag) {
 	var self = this;
 	self.element = tag;
-	self.tag = tag.html();
+	self.tag = tag.html().trim();
 	self.toSeconds = function() {
-		var justNumbers = self.tag.substring(5);
+		var justNumbers = self.tag.substring(self.tag.indexOf("Audio")+5);
 		var toReturn = 0;
 		var timeParts = justNumbers.split(":");
 		toReturn += parseInt(timeParts[0])*3600;
@@ -110,7 +112,7 @@ var audioTags;
 var tags;
 var currentTag = 0;
 $(function() {
-	 audioTags = $("p").filter(function(i,p) {
+	audioTags = $("p, span").filter(function(i,p) {
 	  return $(p).html().indexOf("Audio") > -1;
 	});
 	tags = [];
@@ -122,10 +124,19 @@ $(function() {
 		if(player.getCurrentTime() > tags[currentTag+1].toSeconds()) {
 			currentTag++;
 			$("html, body").animate({
-				scrollTop: tags[currentTag].element.offset().top
+				scrollTop: tags[currentTag].element.offset().top - 100
 			},500);
+			tags[currentTag].element.effect("highlight",{color:"#669966"}, 3000);
 		}
-	},1000);
+		else if (currentTag > 0 &&
+			player.getCurrentTime() < tags[currentTag-1].toSeconds()) {
+			currentTag--;
+			$("html, body").animate({
+				scrollTop: tags[currentTag].element.offset().top - 100
+			},500);
+			tags[currentTag].element.effect("highlight",{color:"#669966"}, 3000);
+		}
+	},500);
 });
 </script>
 
