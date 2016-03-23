@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Week 10 - Day 1 (Evaluation)</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/CS403-001/css/main.css">
+  <link rel="canonical" href="jmbeach.github.io/CS403-001/2016/03/22/week-10-day-1-evaluation.html">
+  <link rel="alternate" type="application/rss+xml" title="CS 403 - 001 Spring 2016" href="jmbeach.github.io/CS403-001/feed.xml">
+  <script src="/CS403-001/bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/CS403-001/">CS 403 - 001 Spring 2016</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/CS403-001/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Week 10 - Day 1 (Evaluation)</h1>
+    <p class="post-meta"><time datetime="2016-03-22T00:00:00-05:00" itemprop="datePublished">Mar 22, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div id="player" style="position:fixed;bottom:1em;right:1em;"></div>
+<script>
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('player', {
+		height: '190',
+		width: '340',
+		videoId: 'onU068jLdsY',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
+function onPlayerReady(event) {
+	event.target.playVideo();
+}
+var done = false;
+function onPlayerStateChange(event) {
+}
+function stopVideo() {
+	player.stopVideo();
+}
+function AudioTag(tag) {
+	var self = this;
+	self.element = tag;
+	self.tag = tag.html();
+	self.toSeconds = function() {
+		var justNumbers = self.tag.substring(5);
+		var toReturn = 0;
+		var timeParts = justNumbers.split(":");
+		toReturn += parseInt(timeParts[0])*3600;
+		toReturn += parseInt(timeParts[1])*60;
+		toReturn += parseInt(timeParts[2]);
+		return toReturn;
+	}
+}
+
+var audioTags;
+var tags;
+var currentTag = 0;
+$(function() {
+	 audioTags = $("p").filter(function(i,p) {
+	  return $(p).html().indexOf("Audio") > -1;
+	});
+	tags = [];
+	for (var i = 0; i < audioTags.length; i++) {
+		var tag = audioTags[i];
+		tags.push(new AudioTag($(tag)));
+	}
+	setInterval(function() {
+		if(player.getCurrentTime() > tags[currentTag+1].toSeconds()) {
+			currentTag++;
+			$("html, body").animate({
+				scrollTop: tags[currentTag].element.offset().top
+			},500);
+		}
+	},1000);
+});
+</script>
+
+<h1 id="week-10---day-1-notes">Week 10 - Day 1 Notes</h1>
+<p>Audio 0:00:38</p>
+
+<h2 id="evaluation">Evaluation</h2>
+
+<h3 id="function-calls">Function calls</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">call</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span>
+<span class="p">{</span> 
+	<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">getArgs</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="c1">// f will be an identifier</span>
+	<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">getFunction</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">closure</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">denv</span> <span class="o">=</span> <span class="nx">getEnv</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">getBody</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">getParams</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="c1">// find the value of the arguments in the calling environment</span>
+	<span class="c1">// Audio 0:09:47</span>
+	<span class="kd">var</span> <span class="nx">eargs</span> <span class="o">=</span> <span class="nx">evalArgs</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="c1">// create a new table</span>
+	<span class="kd">var</span> <span class="nx">xenv</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">eargs</span><span class="p">,</span> <span class="nx">denv</span><span class="p">);</span>
+	<span class="c1">// Audio 0:11:30</span>
+	<span class="c1">// eval the body under the extended environment</span>
+	<span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span><span class="nx">xenv</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Now that we have the evaluator…</p>
+
+<p>Audio 0:13:30</p>
+
+<h2 id="handling-builtins">Handling Builtins</h2>
+
+<p>How do we handle…</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">println</span><span class="p">(</span><span class="s2">"x is"</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Println</code> is built in and somewhere in our Java code, we have:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">Lexeme</span> <span class="nf">evalPrintln</span><span class="p">(</span><span class="n">Lexeme</span> <span class="n">pt</span><span class="o">,</span> <span class="n">Lexeme</span> <span class="n">env</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">Lexeme</span> <span class="n">eargs</span> <span class="o">=</span> <span class="n">evalArg</span><span class="o">(</span><span class="n">getArgs</span><span class="o">(</span><span class="n">pt</span><span class="o">),</span> <span class="n">env</span><span class="o">);</span>
+	<span class="c1">// then we loop through and basically just print out these things</span>
+	<span class="c1">// Audio 0:20:19</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+<p>Audio 0:19:00
+Somehow the above code has to get called by the <code class="highlighter-rouge">println</code> code</p>
+
+<h3 id="binding-println-to-local-environment">Binding Println to Local Environment</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">null</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">prtln</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Lexeme</span><span class="p">(</span><span class="nx">ID</span><span class="p">,</span> <span class="s2">"println"</span><span class="p">);</span>
+<span class="c1">// Audio 0:22:17</span>
+<span class="kd">var</span> <span class="nx">prtlnVal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Lexeme</span><span class="p">(</span><span class="nx">BUILTIN</span><span class="p">);</span>
+<span class="c1">// Audio 0:23:40</span>
+<span class="nx">prtlnVal</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">prtln</span><span class="p">;</span>
+<span class="c1">// Audio 0:24:42</span>
+<span class="nx">insert</span><span class="p">(</span><span class="nx">prtln</span><span class="p">,</span><span class="nx">prtlnVal</span><span class="p">,</span><span class="nx">global</span><span class="p">);</span>
+<span class="c1">// Now println is in the global scope</span>
+<span class="c1">// Audio 0:26:30</span>
+</code></pre>
+</div>
+<p>(going back to code from function call eval)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// pt = parse tree</span>
+<span class="kd">function</span> <span class="nx">call</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span>
+<span class="p">{</span> 
+	<span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">getArgs</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="c1">// f will be an identifier</span>
+	<span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">getFunction</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">closure</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="c1">// Audio 0:27:00</span>
+	<span class="c1">// new code!</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">closure</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">BUILTIN</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">evalBuiltin</span><span class="p">(</span><span class="nx">closure</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">// end new code!</span>
+	<span class="kd">var</span> <span class="nx">denv</span> <span class="o">=</span> <span class="nx">getEnv</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">getBody</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">getParams</span><span class="p">(</span><span class="nx">closure</span><span class="p">);</span>
+	<span class="c1">// find the value of the arguments in the calling environment</span>
+	<span class="kd">var</span> <span class="nx">eargs</span> <span class="o">=</span> <span class="nx">evalArgs</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="c1">// create a new table</span>
+	<span class="kd">var</span> <span class="nx">xenv</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">eargs</span><span class="p">,</span> <span class="nx">denv</span><span class="p">);</span>
+	<span class="c1">// eval the body under the extended environment</span>
+	<span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">body</span><span class="p">,</span><span class="nx">xenv</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Audio 0:29:15</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">evalBuiltin</span><span class="p">(</span><span class="nx">bi</span><span class="p">,</span> <span class="nx">env</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">bi</span><span class="p">.</span><span class="nx">left</span><span class="p">.</span><span class="nx">sval</span><span class="p">;</span>
+	<span class="c1">// Audio 0:30:21</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">==</span> <span class="s2">"println"</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">evalPrintln</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Audio 0:32:04</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">ival</span><span class="p">;</span>
+<span class="kt">double</span> <span class="n">nval</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">sval</span><span class="p">;</span>
+<span class="n">Lexeme</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">fval</span><span class="p">)(</span><span class="n">lexeme</span> <span class="o">*</span><span class="p">,</span> <span class="n">lexeme</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Audio 0:35:00
+(I’m lost)
+## Hardwiring Builtins Into Grammar
+Audio 0:36:30</p>
+
+<p>(This is not recommended)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>primary: INTEGER
+	| STRING
+	| PRINTLN OPAREN argList CPAREN
+	| ... another builtin
+</code></pre>
+</div>
+
+<h2 id="handling-operators">Handling Operators</h2>
+<p>Audio 0:39:00</p>
+
+<p>Build a parse tree:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	(plus)
+	/    \
+       a      b
+</code></pre>
+</div>
+
+<p>There are also types to worry about. You don’t have to handle all of them, but you have the option of handling int + int, string + string, string + int, etc.</p>
+
+<h3 id="plus-eval">Plus Eval</h3>
+<p>Audio 0:42:42</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">evalPlus</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">pt</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">pt</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">INTEGER</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">INTEGER</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nx">Lexeme</span><span class="p">(</span><span class="nx">INTEGER</span><span class="p">,</span> <span class="nx">a</span><span class="p">.</span><span class="nx">ival</span> <span class="o">+</span> <span class="nx">b</span><span class="p">.</span><span class="nx">ival</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="c1">// more types or throw err</span>
+	<span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="evaluating-blocks">Evaluating blocks</h2>
+<p>Audio 0:44:40</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">evalBlock</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">spot</span> <span class="o">=</span> <span class="nx">getStatements</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nx">spot</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">spot</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+		<span class="nx">spot</span> <span class="o">=</span> <span class="nx">spot</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="evaluating-return">Evaluating Return</h3>
+<p>Audio 0:47:15</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">evalReturn</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Lexeme</span><span class="p">(</span><span class="nx">RETURNED</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+	<span class="k">return</span> <span class="nx">ret</span>
+</code></pre>
+</div>
+<p>}</p>
+
+<p>(Coming back to eval block)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">evalBlock</span><span class="p">(</span><span class="nx">pt</span><span class="p">,</span> <span class="nx">env</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">spot</span> <span class="o">=</span> <span class="nx">getStatements</span><span class="p">(</span><span class="nx">pt</span><span class="p">);</span>
+	<span class="k">while</span> <span class="p">(</span><span class="nx">spot</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">spot</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">env</span><span class="p">);</span>
+		<span class="c1">// new code!</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="nx">RETURNED</span><span class="p">)</span> <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+		<span class="c1">// end new code</span>
+		<span class="nx">spot</span> <span class="o">=</span> <span class="nx">spot</span><span class="p">.</span><span class="nx">right</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="handling-exceptions">Handling Exceptions</h3>
+<p>Audio 0:50:00</p>
+
+<h2 id="getting-rid-of-base-cases">Getting Rid of Base Cases</h2>
+<p>Audio 0:53:00</p>
+
+<h3 id="postponing-the-evaluation-of-arguments">Postponing the Evaluation of Arguments</h3>
+<p>Audio 0:55:00</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">;@ When we do delayed evaluation, you need the calling environment</span>
+<span class="c1">;@ # captures the calling environment</span>
+<span class="c1">;@ in scam, if you name a parameter with a $, you delay its evaluation</span>
+		<span class="c1">;@  v-------thunk-------v</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">cons-stream</span> <span class="o">#</span> <span class="nv">left</span> <span class="nv">$right</span><span class="p">)</span>
+	<span class="c1">;@ Audio 1:00:00</span>
+	<span class="p">(</span><span class="nb">cons</span> <span class="nv">left</span> <span class="p">(</span><span class="nb">cons</span> <span class="nv">$right</span> <span class="o">#</span><span class="p">))</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="example-call">Example Call:</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">;@ + is only called once</span>
+<span class="p">(</span><span class="nf">cons-stream</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">c</span> <span class="nv">d</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>Audio 1:01:00</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">cell</span><span class="p">)</span> 
+	<span class="p">(</span><span class="nb">car</span> <span class="nv">cell</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">;@ Audio 1:01:50</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">cell</span><span class="p">)</span>
+	<span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">cadr</span> <span class="nv">cell</span><span class="p">)</span> <span class="p">(</span><span class="nb">cddr</span> <span class="nv">cell</span><span class="p">))</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Audio 1:04:00</p>
+
+<p>(What are we talking about?)</p>
+
+<h2 id="no-base-case">No Base Case</h2>
+<p>Audio 1:06:09</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">;@ infinite list of ints</span>
+<span class="c1">;@ no base case. We did it guys</span>
+<span class="c1">;@ This code is just stored here, it's not being evaluated</span>
+<span class="c1">;@  unless we use stream-car or stream-cdr</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">ints-from</span> <span class="nv">n</span><span class="p">)</span>
+	<span class="p">(</span><span class="nb">cons</span> <span class="nv">n</span> <span class="p">(</span><span class="nf">ints-from</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))</span>
+	<span class="p">)</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Audio 1:08:00</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="k">define</span> <span class="nv">two-on</span> <span class="p">(</span><span class="nf">ints-from</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="nf">inspect</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">two-on</span><span class="p">))</span> <span class="c1">;@ 2</span>
+<span class="p">(</span><span class="nf">inspect</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">two-on</span><span class="p">)))</span> <span class="c1">;@ 3</span>
+</code></pre>
+</div>
+
+<h2 id="one-last-thing">One Last Thing</h2>
+
+<p>A stream is these non-evaluated lists</p>
+
+<p>Audio 1:11:59</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">stream-ref</span> <span class="nv">s</span> <span class="nv">n</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">cond</span>
+		<span class="p">((</span><span class="nb">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s</span><span class="p">))</span>
+		<span class="p">(</span><span class="k">else</span> <span class="p">(</span><span class="nf">stream-ref</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">s</span><span class="p">)</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">)))</span>
+	<span class="p">)</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+<h3 id="example">Example</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nf">stream-ref</span> <span class="nv">two-on</span> <span class="mi">1000</span><span class="p">)</span> <span class="c1">;@ 1002</span>
+</code></pre>
+</div>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">CS 403 - 001 Spring 2016</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>CS 403 - 001 Spring 2016</li>
+          <li><a href="mailto:jmbeach1@crimson.ua.edu">jmbeach1@crimson.ua.edu</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/jmbeach"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">jmbeach</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Website for notes and study material for CS 403 (Programming Languages) at The University of Alabama Spring 2016
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
