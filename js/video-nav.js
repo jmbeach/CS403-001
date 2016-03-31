@@ -25,6 +25,9 @@ function AudioNavigator(opts) {
 
   self.onPlayerReady = function(event) {
 		event.target.playVideo();
+		setTimeout(function() {
+			event.target.seekTo(0);
+		},1000);
   }
 
   var done = false;
