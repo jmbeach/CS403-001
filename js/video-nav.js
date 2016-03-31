@@ -93,7 +93,8 @@ function AudioNavigator(opts) {
           color: "#669966"
         }, 3000);
       }
-    }, 2000);
+    }, 500);
   });
+	$.AudioNavigator = this;
 }
 
