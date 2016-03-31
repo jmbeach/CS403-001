@@ -57,16 +57,20 @@ function AudioNavigator(opts) {
   var tags;
   self.currentTag = 0;
   var findAudioTag = function() {
-    if (self.player.getCurrentTime() > tags[self.currentTag + 1].toSeconds()) {
+		var nextTag = tags[self.currentTag+1];
+		var previousTag = tags[self.currentTag-1];
+    if (nextTag && self.player.getCurrentTime() > tags[self.currentTag + 1].toSeconds()) {
       self.currentTag++;
+			nextTag = tags[self.currentTag+1];
       // look ahead
-      if (self.currentTag < tags.length &&
+      if (nextTag && self.currentTag < tags.length &&
         self.player.getCurrentTime() > tags[self.currentTag + 1].toSeconds()) {
         findAudioTag();
       }
-    } else if (self.currentTag > 0 &&
-      self.player.getCurrentTime() < tags[self.currentTag - 1].toSeconds()) {
+    } else if (previousTag && self.currentTag > 0 &&
+      self.player.getCurrentTime() < previousTag.toSeconds()) {
       self.currentTag--;
+			previousTag = tags[self.currentTag-1];
       if (self.currentTag > 0 &&
         self.player.getCurrentTime() < tags[self.currentTag - 1].toSeconds()) {
         findAudioTag();
