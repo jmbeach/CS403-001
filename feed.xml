@@ -6,13 +6,35 @@
 </description>
     <link>jmbeach.github.io/CS403-001/</link>
     <atom:link href="jmbeach.github.io/CS403-001/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 12 Apr 2016 13:21:26 -0500</pubDate>
-    <lastBuildDate>Tue, 12 Apr 2016 13:21:26 -0500</lastBuildDate>
+    <pubDate>Tue, 12 Apr 2016 13:32:24 -0500</pubDate>
+    <lastBuildDate>Tue, 12 Apr 2016 13:32:24 -0500</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
         <title>Week 13 - Day 1 (Call-by-value)</title>
-        <description>&lt;h1 id=&quot;call-by-value&quot;&gt;CALL-BY-VALUE&lt;/h1&gt;
+        <description>
+&lt;p class=&quot;downloadDoc&quot;&gt; Download Word (docx): 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-13-day-1.docx&quot;&gt;
+		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;downloadPdf&quot;&gt; Download PDF: 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-13-day-1.pdf&quot;&gt;
+		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div style=&quot;position:fixed;bottom:1em;right:1em; background:black;padding:.5em&quot;&gt;
+	&lt;h2 style=&quot;margin:0;color:white&quot;&gt;Navigate using audio&lt;/h2&gt;
+	&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new AudioNavigator({videoId:&quot;ylCOqZ12Tc4&quot;});
+&lt;/script&gt;
+
+&lt;h1 id=&quot;call-by-value&quot;&gt;CALL-BY-VALUE&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;CALL-BY-VALUE
@@ -134,8 +156,15 @@
     
       <item>
         <title>Week 11 - Day 1 (Finishing streams &amp; Carets)</title>
-        <description>&lt;p&gt; Download PDF: 
-&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/Week 11 - Day 1 (Finishing streams &amp;amp; Carets).pdf&quot;&gt;
+        <description>
+&lt;p class=&quot;downloadDoc&quot;&gt; Download Word (docx): 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-11-day-1-finishing-streams-carets.docx&quot;&gt;
+		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;downloadPdf&quot;&gt; Download PDF: 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-11-day-1-finishing-streams-carets.pdf&quot;&gt;
 		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
 &lt;/a&gt;
 &lt;/p&gt;
@@ -290,8 +319,15 @@ Caret dog ayyyy lmao&lt;/p&gt;
     
       <item>
         <title>Week 10 - Day 2 (Streams)</title>
-        <description>&lt;p&gt; Download PDF: 
-&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/Week 10 - Day 2 (Streams).pdf&quot;&gt;
+        <description>
+&lt;p class=&quot;downloadDoc&quot;&gt; Download Word (docx): 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-10-day-2-streams.docx&quot;&gt;
+		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;downloadPdf&quot;&gt; Download PDF: 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-10-day-2-streams.pdf&quot;&gt;
 		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
 &lt;/a&gt;
 &lt;/p&gt;
