@@ -1,5 +1,6 @@
 
 
 							Week 14
-							 Day 1
-					(Asserts, etc)
+							 Day 2
+					(Conditions 
+						/ Invariants)

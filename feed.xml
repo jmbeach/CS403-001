@@ -6,9 +6,363 @@
 </description>
     <link>jmbeach.github.io/CS403-001/</link>
     <atom:link href="jmbeach.github.io/CS403-001/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 20 Apr 2016 20:06:10 -0500</pubDate>
-    <lastBuildDate>Wed, 20 Apr 2016 20:06:10 -0500</lastBuildDate>
+    <pubDate>Thu, 21 Apr 2016 13:40:56 -0500</pubDate>
+    <lastBuildDate>Thu, 21 Apr 2016 13:40:56 -0500</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Week 14 - Day 2 (Conditions / Invariants)</title>
+        <description>
+&lt;p class=&quot;downloadDoc&quot;&gt; Download Word (docx): 
+&lt;a target=&quot;_blank&quot; href=&quot;/CS403-001/assets/week-14-day-2.docx&quot;&gt;
+		&lt;span class=&quot;icono-document&quot;&gt;&lt;/span&gt;
+&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div style=&quot;position:fixed;bottom:1em;right:1em; background:black;padding:.5em&quot;&gt;
+	&lt;h2 style=&quot;margin:0;color:white&quot;&gt;Navigate using audio&lt;/h2&gt;
+	&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new AudioNavigator({videoId: &quot;MERY9L9Ech8&quot;});
+&lt;/script&gt;
+
+&lt;h1 id=&quot;final-exam&quot;&gt;Final Exam&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;May 2nd&lt;/li&gt;
+  &lt;li&gt;11 am - 2 pm
+    &lt;ul&gt;
+      &lt;li&gt;He’s going to draw pictures of tables and environments and ask us questions about them
+        &lt;ul&gt;
+          &lt;li&gt;You have to accurately draw an environment / picture&lt;/li&gt;
+          &lt;li&gt;Which environments are garbage collected?&lt;/li&gt;
+          &lt;li&gt;Which closures are garbage collected?&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Next Thursday is optional&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Drop dead project date is Saturday at 12 am&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// precondition&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//	Audio 0:08:06.024352 &lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+	&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// #x is original value of x&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We need to find invariants&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Invariants
+    &lt;ul&gt;
+      &lt;li&gt;x + y = #x &amp;amp;&amp;amp; x &amp;gt;= 0 &amp;amp;&amp;amp; y &amp;gt;= 0&lt;/li&gt;
+      &lt;li&gt;Turns out we don’t need the last one
+        &lt;ul&gt;
+          &lt;li&gt;Audio 0:10:31.969762&lt;/li&gt;
+          &lt;li&gt;Turns out we don’t need the last one&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Want to make these as simple as possible
+    &lt;ul&gt;
+      &lt;li&gt;Audio 0:09:05.838218&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;P (Precondition)&lt;/p&gt;
+
+&lt;p&gt;Q (Postcondition)&lt;/p&gt;
+
+&lt;p&gt;I (Invariant)&lt;/p&gt;
+
+&lt;p&gt;S (Function body)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Given our facts of the precondition
+    &lt;ul&gt;
+      &lt;li&gt;We need to show that it implies the invariant is true&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;What if you had a precondition of false?
+    &lt;ul&gt;
+      &lt;li&gt;You could have anything as the invariant because all hypotheses are true
+        &lt;ul&gt;
+          &lt;li&gt;Or something like that&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Finding invariant (step 0) Audio 0:12:36.331760&lt;/li&gt;
+  &lt;li&gt;Step 1 P -&amp;gt; I&lt;/li&gt;
+  &lt;li&gt;Step 2&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;I&amp;gt;&amp;gt; E &amp;lt;&amp;lt;I&amp;gt;&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;I push back through E, I should imply the invariant through E&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Step 3 `«I &amp;amp;&amp;amp; E» S «I»
+    &lt;ul&gt;
+      &lt;li&gt;After I pushback through S, I and E should imply the invariant after being pushed back through S&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Setp 4
+  I &amp;amp;&amp;amp; !E -&amp;gt; Q&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;running-through-it&quot;&gt;Running through it&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Audio 0:18:33.355059&lt;/li&gt;
+  &lt;li&gt;Step 1:
+    &lt;ul&gt;
+      &lt;li&gt;x &amp;gt;=0 &amp;amp;&amp;amp; y==0 -&amp;gt; x + y == #x &amp;amp;&amp;amp; x &amp;gt;=0
+        &lt;ul&gt;
+          &lt;li&gt;is their a difference between x an #x right now?
+            &lt;ul&gt;
+              &lt;li&gt;No, so we can simplify&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;x &amp;gt;=0 &amp;amp;&amp;amp; y==0 -&amp;gt; x + y == x &amp;amp;&amp;amp; x &amp;gt;=0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x + 0 = x
+x = x (check)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Step 2:
+    &lt;ul&gt;
+      &lt;li&gt;E causes no changes of state ✓&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Step 3:
+    &lt;ul&gt;
+      &lt;li&gt;Audio 0:21:13.875265
+        &lt;ul&gt;
+          &lt;li&gt;I &amp;amp;&amp;amp; E -&amp;gt; I ⨂ S&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x + y ==#x &amp;amp;&amp;amp; x &amp;gt;= 0  &amp;amp;&amp;amp; x &amp;gt; 0 -&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;I ⨂ S		x + y + 1 == #x &amp;amp;&amp;amp; x &amp;gt;= 0
+				x - 1 + y + 1 == #x &amp;amp;&amp;amp; x - 1 &amp;gt;= 0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Audio 0:23:36.306506&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x + y ==#x &amp;amp;&amp;amp; x &amp;gt;= 0  &amp;amp;&amp;amp; x &amp;gt; 0 -&amp;gt; x + y == #x &amp;amp;&amp;amp; x &amp;gt;= 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Audio 0:24:05.223440&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;We have two conditions on x. Can it be simplified?
+x + y ==#x &amp;amp;&amp;amp; x &amp;gt;= 0  &amp;amp;&amp;amp; x &amp;gt; 0 -&amp;gt; x + y == #x &amp;amp;&amp;amp; x &amp;gt;= 1
+		---------------
+		^ these are both true when x &amp;gt; 0, meaning x &amp;gt;= 1
+
+We have shown 3 is true ✓
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Step 4
+    &lt;ul&gt;
+      &lt;li&gt;Audio 0:25:59.289925&lt;/li&gt;
+      &lt;li&gt;x + y == #x &amp;amp;&amp;amp; x &amp;gt;= 0 &amp;amp;&amp;amp; x &amp;lt;= 0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;x == 0 &amp;amp;&amp;amp; y == #x
+-----
+  ✓
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Audio 0:27:43.042313
+    &lt;ul&gt;
+      &lt;li&gt;Humans don’t determine if programs terminate&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;I’m sorry about bringing up Formal languages.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;another-example&quot;&gt;Another example&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Audio 0:33:01.950746&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;what-are-our-invariants-things-that-are-always-true&quot;&gt;What are our invariants? (Things that are always true)&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;x &amp;gt; 0&lt;/li&gt;
+  &lt;li&gt;x + 2y == #x&lt;/li&gt;
+  &lt;li&gt;x % 2 == 0
+    &lt;ul&gt;
+      &lt;li&gt;It starts out even and we just subtract 2 from it&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;y &amp;gt;= 0
+    &lt;ul&gt;
+      &lt;li&gt;Audio 0:37:35.525937&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The above are true, but they might not be minimal
+    &lt;ul&gt;
+      &lt;li&gt;We have to show at the end that I &amp;amp;&amp;amp; !#E -&amp;gt; Q
+        &lt;ul&gt;
+          &lt;li&gt;So I’m dumb, we need x + 2y == #x&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Audio 0:40:49.999159&lt;/li&gt;
+  &lt;li&gt;Re-write the second term ( x + 2y == #x )?
+    &lt;ul&gt;
+      &lt;li&gt;x + 2(#x/2) == #x&lt;/li&gt;
+      &lt;li&gt;No, doesn’t help us prove y == #x / 2&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Only one we don’t need is y &amp;gt;= 0
+    &lt;ul&gt;
+      &lt;li&gt;Audio 0:42:37.440301&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;if-statement-example&quot;&gt;IF statement example&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Audio 0:47:07.386269&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;what-are-the-invariants&quot;&gt;What are the invariants?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Audio 0:50:20.104086&lt;/li&gt;
+  &lt;li&gt;b &amp;gt;= 0
+    &lt;ul&gt;
+      &lt;li&gt;b is counting down and eventually 1 will be subtracted from 1 and the loop will fail
+        &lt;ul&gt;
+          &lt;li&gt;b will be equal to 0 at that point&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;a &amp;gt;= 0&lt;/li&gt;
+  &lt;li&gt;t &amp;gt;= 0
+    &lt;ul&gt;
+      &lt;li&gt;starts out at 1, t can go to zero if a is 0 to begin with&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;how many steps to calculate #a^#b
+    &lt;ul&gt;
+      &lt;li&gt;log(b)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;what value is being preserved?
+    &lt;ul&gt;
+      &lt;li&gt;trying to compute #a^#b&lt;/li&gt;
+      &lt;li&gt;storing stuff in t and if I’m not, I’m making a bigger and bigger
+        &lt;ul&gt;
+          &lt;li&gt;Audio 0:56:19.321853&lt;/li&gt;
+          &lt;li&gt;(a^2)^(b/2) -&amp;gt; a^b&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;t + a^b = #a^#b&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ex: Test 2, b = 2&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a b t
+- - -  1 + 2^3 = 9
+2 3 1
+
+2 2 2  2 + 2^2 = 6
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;t * a^b = #a^#b&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a b t
+- - -  1 * 2^3 = 8
+2 3 1
+
+2 2 2  2 * 2^2 = 8
+
+4 1 2  2 * 4^1 = 8
+
+4 0 8  8 * 4^0 = 8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;what-is-necessary&quot;&gt;What is necessary?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;b &amp;gt;= 0&lt;/li&gt;
+  &lt;li&gt;t * a^b == #a^#b
+    &lt;ul&gt;
+      &lt;li&gt;Figuring out what was preserved helped us figure this out&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;next-time-well-go-over-finding-the-weakest-precondition-for-a-while-loop&quot;&gt;Next time we’ll go over finding the weakest precondition for a while loop&lt;/h1&gt;
+</description>
+        <pubDate>Thu, 21 Apr 2016 00:00:00 -0500</pubDate>
+        <link>jmbeach.github.io/CS403-001/2016/04/21/week-14-day-2.html</link>
+        <guid isPermaLink="true">jmbeach.github.io/CS403-001/2016/04/21/week-14-day-2.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Week 14 - Day 1 (Asserts, etc)</title>
