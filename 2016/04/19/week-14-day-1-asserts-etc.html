@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Week 14 - Day 1 (Asserts, etc)</title>
+  <meta name="description" content="	Navigate using audio	">
+
+  <link rel="stylesheet" href="/CS403-001/css/main.css">
+  <link rel="stylesheet" href="/CS403-001/bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="/CS403-001/bower_components/icono/dist/icono.min.css">
+  <link rel="canonical" href="jmbeach.github.io/CS403-001/2016/04/19/week-14-day-1-asserts-etc.html">
+  <link rel="alternate" type="application/rss+xml" title="CS 403 - 001 Spring 2016" href="jmbeach.github.io/CS403-001/feed.xml">
+  <script src="/CS403-001/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/CS403-001/bower_components/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/CS403-001/js/video-nav.js"></script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/CS403-001/">CS 403 - 001 Spring 2016</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/CS403-001/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Week 14 - Day 1 (Asserts, etc)</h1>
+    <p class="post-meta"><time datetime="2016-04-19T00:00:00-05:00" itemprop="datePublished">Apr 19, 2016</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div style="position:fixed;bottom:1em;right:1em; background:black;padding:.5em">
+	<h2 style="margin:0;color:white">Navigate using audio</h2>
+	<div id="player"></div>
+</div>
+
+<script>
+new AudioNavigator({videoId:"o6NashBlozQ"});
+</script>
+
+<h2 id="asserts">Asserts</h2>
+<ul>
+  <li>Audio 0:01:47.287221</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;assert.h&gt;
+</span>
+<span class="n">function</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+	<span class="c1">// precondition
+</span>	<span class="n">assert</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="c1">//.
+</span>	<span class="c1">//.
+</span>	<span class="c1">//.
+</span>	<span class="c1">// postcondition
+</span>	<span class="n">assert</span><span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Audio 0:02:50.569008</li>
+  <li>Final will be open notes and open book
+    <ul>
+      <li>Whatever you want
+        <ul>
+          <li>Audio 0:03:30.949634</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// double bracket statements represent conditions
+// precondition
+</span><span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">&gt;&gt;</span>
+<span class="c1">// postcondition
+</span><span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">&gt;&gt;</span>
+<span class="c1">// is the program correct?
+// Audio 0:05:01.943301 
+</span></code></pre>
+</div>
+
+<p>We’re going to run the program in reverse in order to check correctness</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Audio 0:05:52.521103 
+// start with x &gt; 0
+//	going backwards
+</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="c1">// this is the xame as
+</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="c1">// which is what we sought to proove
+</span></code></pre>
+</div>
+
+<ul>
+  <li>Audio 0:07:41.389287</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="o">&gt;&gt;</span>
+<span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</code></pre>
+</div>
+
+<p>-&gt; x == 100 -&gt; x &gt; 1</p>
+
+<p>P implies Q where x replaces x-1</p>
+
+<p>P -&gt; Q x\x-1</p>
+
+<ul>
+  <li>What is your weakest precondition?</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>	 <span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">&gt;&gt;</span>
+	 <span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">==</span> <span class="mi">100</span><span class="o">&gt;&gt;</span>
+</code></pre>
+</div>
+<ul>
+  <li>It’s x &gt; 1 because it’s more general. You’re allowing more stuff in
+    <ul>
+      <li>Audio 0:10:43.221994</li>
+    </ul>
+  </li>
+</ul>
+
+<p>What is the weakest precondition for the following postcondition?</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">&gt;&gt;</span> 
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="o">&gt;&gt;</span>
+</code></pre>
+</div>
+
+<p>Weakest possible pre-condition is “true”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span>
+
+<span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">&gt;&gt;</span>
+
+<span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="o">*</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">&gt;&gt;</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Audio 0:16:02.064413 
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span>
+<span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">&gt;&gt;</span>
+
+<span class="o">&lt;&lt;</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">&gt;&gt;</span>
+
+<span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">y</span> <span class="o">+</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">&gt;&gt;</span> <span class="c1">// weakest
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//&lt;&lt;P&gt;&gt;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">E</span><span class="p">)</span>
+	<span class="nx">S</span><span class="p">;</span>
+<span class="k">else</span>
+	<span class="nx">T</span><span class="p">;</span>
+<span class="c1">//&lt;Q&gt;&gt;</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">// Audio 0:20:04.941081 </span>
+<span class="c1">//&lt;&lt;P&gt;&gt;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">E</span><span class="p">)</span> <span class="nx">S</span><span class="p">;</span>
+<span class="k">else</span> <span class="nx">T</span><span class="p">;</span>
+<span class="c1">//&lt;&lt;Q&gt;&gt;</span>
+</code></pre>
+</div>
+
+<p>Proof rule:</p>
+
+<p>P &amp;&amp; E - &gt; Q (pushback) S
+	&amp;&amp;
+P &amp;&amp; !E -&gt; Q (pushback) T</p>
+
+<ul>
+  <li>Audio 0:21:59.918531</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">((</span><span class="nx">fp</span> <span class="o">=</span> <span class="nx">fopen</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Audio 0:24:45.279192</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">x</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+	<span class="nx">x</span><span class="o">=-</span><span class="nx">x</span>
+<span class="k">else</span>
+	<span class="nx">x</span><span class="o">=</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1">//&lt;&lt;x &gt; 0&gt;&gt;</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">//&lt;&lt;true&gt;&gt;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+	<span class="nx">x</span><span class="o">=-</span><span class="nx">x</span>
+<span class="k">else</span>
+	<span class="nx">x</span><span class="o">=</span><span class="nx">x</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1">//&lt;&lt;x &gt; 1&gt;&gt;</span>
+</code></pre>
+</div>
+
+<p>Audio 0:28:20.419273</p>
+
+<ul>
+  <li>true &amp;&amp; x &lt; 0 -&gt; -x &gt; 1</li>
+  <li>true &amp;&amp; x &gt;= 0 -&gt; Q (pushback) x + 1 &gt; 1
+    <ul>
+      <li>x &lt; 0 -&gt; x &lt; -1 –&gt; False</li>
+      <li>x &gt; 0 -&gt; x &gt; 0 –&gt; true</li>
+    </ul>
+  </li>
+</ul>
+
+<p>TAUTOLOGY</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">while</span><span class="p">(</span><span class="nx">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	<span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// (#x means x's original value)</span>
+<span class="c1">// &lt;&lt;y==#x &amp;&amp; x==0&gt;&gt;</span>
+<span class="c1">// Audio 0:37:16.326192 </span>
+<span class="c1">// x + y == #x + #y</span>
+<span class="c1">// y has gotten smaller by the same amount that x got larger</span>
+<span class="c1">//	Therefore, we have preserved the amount and it remains unchanged</span>
+</code></pre>
+</div>
+
+<p>Next time we’ll do proof rule for while loop and try to find the weakest precondition for if and while loop</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">CS 403 - 001 Spring 2016</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>CS 403 - 001 Spring 2016</li>
+          <li><a href="mailto:jmbeach1@crimson.ua.edu">jmbeach1@crimson.ua.edu</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/jmbeach"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">jmbeach</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Website for notes and study material for CS 403 (Programming Languages) at The University of Alabama Spring 2016
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

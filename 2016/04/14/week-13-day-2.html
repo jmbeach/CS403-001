@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>CS 403 - 001 Spring 2016</title>
-  <meta name="description" content="Website for notes and study material for CS 403 (Programming Languages) at The University of Alabama Spring 2016
-">
+  <title>Week 13 - Day 2</title>
+  <meta name="description" content="Questions About Assignment 3">
 
   <link rel="stylesheet" href="/CS403-001/css/main.css">
   <link rel="stylesheet" href="/CS403-001/bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="/CS403-001/bower_components/icono/dist/icono.min.css">
-  <link rel="canonical" href="jmbeach.github.io/CS403-001/">
+  <link rel="canonical" href="jmbeach.github.io/CS403-001/2016/04/14/week-13-day-2.html">
   <link rel="alternate" type="application/rss+xml" title="CS 403 - 001 Spring 2016" href="jmbeach.github.io/CS403-001/feed.xml">
   <script src="/CS403-001/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/CS403-001/bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -60,65 +59,87 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Week 13 - Day 2</h1>
+    <p class="post-meta"><time datetime="2016-04-14T00:00:00-05:00" itemprop="datePublished">Apr 14, 2016</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Apr 19, 2016</span>
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="questions-about-assignment-3">Questions About Assignment 3</h1>
 
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/04/19/week-14-day-1-asserts-etc.html">Week 14 - Day 1 (Asserts, etc)</a>
-        </h2>
+<h2 id="seg-faults">Seg faults</h2>
+<ul>
+  <li>Only happens on this dude’s 64x Linux</li>
+  <li>Tablaue, converges really nicely and it jumps back
+    <ul>
+      <li>That’s expected
+        <ul>
+          <li>Audio 0:02:14.904296</li>
+        </ul>
       </li>
-    
-      <li>
-        <span class="post-meta">Apr 14, 2016</span>
+    </ul>
+  </li>
+  <li>Question 4
+    <ul>
+      <li>You can use everything except the interface</li>
+      <li>Follow the public interface for the add4 simulation</li>
+      <li>Doesn’t matter whether you name it “and-gate-delay” or “gate-delay”</li>
+    </ul>
+  </li>
+  <li>Audio 0:05:36.196587</li>
+</ul>
 
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/04/14/week-13-day-2.html">Week 13 - Day 2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Apr 12, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/04/12/week-13-day-1.html">Week 13 - Day 1 (Call-by-value)</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 31, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/03/31/week-11-day-1-finishing-streams-carets.html">Week 11 - Day 1 (Finishing streams & Carets)</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 24, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/03/24/week-10-day-2-streams.html">Week 10 - Day 2 (Streams)</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 22, 2016</span>
-
-        <h2>
-          <a class="post-link" href="/CS403-001/2016/03/22/week-10-day-1-evaluation.html">Week 10 - Day 1 (Evaluation)</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/CS403-001/feed.xml">via RSS</a></p>
-
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="k">define</span> <span class="nv">+</span> <span class="o">...</span>
+<span class="p">(</span><span class="k">define</span> <span class="nv">x</span> <span class="nv">______</span><span class="p">)</span>
+						<span class="nv">+</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">____</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">|</span> <span class="nv">x</span><span class="p">))</span>
+<span class="c1">;non-local^   ^local</span>
+</code></pre>
 </div>
+
+<h1 id="questions-on-language">Questions On Language</h1>
+
+<h2 id="arrays">Arrays</h2>
+
+<ul>
+  <li>Audio 0:07:55.610067</li>
+  <li>Hava array in Lexeme?
+    <ul>
+      <li>Have a stream of Lexemes?</li>
+    </ul>
+  </li>
+  <li>Example: a = [expr,expr,expr]</li>
+  <li>argList ^</li>
+  <li>An array is a primary (because it’s non-binary)
+    <ul>
+      <li>(Notes on paper)</li>
+      <li>Audio 0:12:29.680759</li>
+      <li>Ex: Primary</li>
+    </ul>
+  </li>
+</ul>
+
+<pre><code class="language-g4">primary: ...
+	| OP expr CP
+	| OP expr CP OP optArgList
+	| ID OP optArgList
+</code></pre>
+
+<p>Allows for stuff like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">x</span><span class="p">))(</span><span class="nx">y</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>No actual lecture today</p>
+
+
+  </div>
+
+</article>
 
       </div>
     </div>
