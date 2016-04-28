@@ -2,6 +2,4 @@
 
 							Week 15
 							 Day 1
-					(Conditions 
-						/ Invariants)
-								pt2
+					(Final Info )
